@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=q, initial-scale=1.0">
 
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <title>Bhutan Developer Community</title>
 </head>
 <body>

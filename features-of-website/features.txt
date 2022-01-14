@@ -6,7 +6,7 @@
 4. Documentations
 5. Events Page 
 6. Blog Post
-7. Code of conduct of contributors
+7. Code of conduct for contributors
 
 ==== Systems to Integrate/Develop ====
 

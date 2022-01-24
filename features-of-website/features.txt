@@ -1,0 +1,15 @@
+==== Features ====
+
+1. About
+2. Contact
+3. Roadmap
+4. Documentations
+5. Events Page 
+6. Blog Post
+7. Code of conduct for contributors
+
+==== Systems to Integrate/Develop ====
+
+1. Login system
+2. Contribution panel 
+3. Chat/Message

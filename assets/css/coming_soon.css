@@ -86,8 +86,6 @@ hr {
 	height: 40px;
 	width: 40px;
 	margin-right: 20px;
-	filter: invert(81%) sepia(32%) saturate(4409%) hue-rotate(335deg)
-		brightness(96%) contrast(87%);
 }
 
 @media screen and (max-width: 1200px) {

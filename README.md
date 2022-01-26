@@ -18,6 +18,9 @@ This is the front-end development repository of [Bhutan Developer Community's we
 ### <p align="center">📫 Contact Us and Join the Community </p>
 
 <p align="center">
+ <a href="https://twitter.com/btdevcommunity">
+  <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Bhutan Developer Community's Twitter" />     
+ </a>
  <a target="_blank" href="https://chat.whatsapp.com/ByKjpnV2ajsBiqG140WEI2">
   <img src="https://img.shields.io/badge/whatsapp-25D366?style=for-the-badge&logo=WhatsApp&logoColor=white" alt="Bhutan Developer Community's WhatsApp Group" />     
  </a>

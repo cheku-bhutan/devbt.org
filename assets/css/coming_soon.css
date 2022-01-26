@@ -115,8 +115,9 @@ a {
 	hr {
 		border: solid blanchedalmond 1px;
 	}
-	.contact-list {
-		text-align: center;
+	h1 {
+		justify-content: left;
+		margin-left: 45px;
 	}
 	.right-contents {
 		width: 100%;

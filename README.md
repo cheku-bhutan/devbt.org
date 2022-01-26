@@ -22,7 +22,10 @@ This is the front-end development repository of [Bhutan Developer Community's we
   <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Bhutan Developer Community's Twitter" />     
  </a>
  <a target="_blank" href="https://chat.whatsapp.com/ByKjpnV2ajsBiqG140WEI2">
-  <img src="https://img.shields.io/badge/whatsapp-25D366?style=for-the-badge&logo=WhatsApp&logoColor=white" alt="Bhutan Developer Community's WhatsApp Group" />     
+  <img src="https://img.shields.io/badge/whatsapp-25D366?style=for-the-badge&logo=WhatsApp&logoColor=white" alt="Bhutan Developer Community's WhatsApp Group" />
+ <a href="https://t.me/+0WfVhQysyQFiOTg1">
+  <img src="https://img.shields.io/badge/Telegram-229ED9?style=for-the-badge&logo=telegram&logoColor=white" alt="Bhutan Developer Community's Telegram Channel" />   
+ </a>     
  </a>
  <a target="_blank" href="https://discord.gg/kfG4Z9qBEb">
   <img src="https://img.shields.io/badge/discord-7289DA?style=for-the-badge&logo=Discord&logoColor=white" alt="Bhutan Developer Community's Discord Server" />     

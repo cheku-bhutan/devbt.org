@@ -50,3 +50,6 @@ This is the front-end development repository of [Bhutan Developer Community's we
 <a target="_blank" href="https://www.devbt.org">
  <p align="center">Bhutan Developer Community</p>
 </a>
+
+<p align="center"> <img src="https://komarev.com/ghpvc/?username=BTDeveloperCommunity&style=flat-square@color=yellow" alt="Community Profile Views" width="250" height="50"/> </p>
+<p align="center">Our Profile Visits</p>

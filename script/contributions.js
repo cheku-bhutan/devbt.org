@@ -1,4 +1,4 @@
-const base_url = "https://api.github.com";
+// functions
 
 function httpGet(theUrl, return_headers) {
 	var xmlHttp = new XMLHttpRequest();
@@ -10,8 +10,21 @@ function httpGet(theUrl, return_headers) {
 	return xmlHttp.responseText;
 }
 
+// function to remove duplicates in the object retrieved from api
+const removeDuplicate = (obj) => {
+	const result = obj.filter(
+		(thing, index, self) =>
+			index ===
+			self.findIndex(
+				(t) =>
+					t.username === thing.username && t.commiterName === thing.commiterName
+			)
+	);
+	return result;
+};
+
 // function to get all commit details in the repo
-function get_all_commits(owner, repo, sha) {
+function get_all_commits(owner, repo, branch) {
 	nameList = [];
 	avatarList = [];
 	usernameList = [];
@@ -19,7 +32,7 @@ function get_all_commits(owner, repo, sha) {
 
 	let first_commit = get_first_commit(owner, repo);
 	let compare_url =
-		base_url +
+		"https://api.github.com" +
 		"/repos/" +
 		owner +
 		"/" +
@@ -27,7 +40,7 @@ function get_all_commits(owner, repo, sha) {
 		"/compare/" +
 		first_commit +
 		"..." +
-		sha;
+		branch;
 
 	let commit_req = httpGet(compare_url);
 	var jsonData = JSON.parse(commit_req);
@@ -47,28 +60,43 @@ function get_all_commits(owner, repo, sha) {
 		commitCount.push(1);
 	}
 
+	// counting number of commits per person
 	const tempObj = {};
 	nameList.forEach((person) => {
 		tempObj[person] = tempObj[person] ? (tempObj[person] += 1) : 1;
 	});
 
-	// const output = arr1.map((el, i) => ({ index: el, value: arr2[i] }));
+	// mapping required data to new object and removing duplicates
+	const data = removeDuplicate(
+		nameList.map((element, i) => ({
+			commiterName: element,
+			username: usernameList[i],
+			avatar: avatarList[i],
+			commitCount: 1,
+		}))
+	);
 
-	const data = nameList.map((element, i) => ({
-		commiterName: element,
-		username: usernameList[i],
-		avatar: avatarList[i],
-		commitCount: 1,
-	}));
+	// assign number of commits to each user
+	var keys = Object.keys(tempObj);
+	for (let i = 0; i < keys.length; i++) {
+		if (keys[i] === data[i].commiterName) {
+			data[i].commitCount = tempObj[keys[i]];
+		}
+	}
 
-	console.log(tempObj);
+	// sort data according to commitNumbers
+
+	data.sort((a, b) => {
+		return b.commitCount - a.commitCount;
+	});
 
 	return data;
 }
 
 // function to get first commit in the repo
 function get_first_commit(owner, repo) {
-	let url = base_url + "/repos/" + owner + "/" + repo + "/commits";
+	let url =
+		"https://api.github.com" + "/repos/" + owner + "/" + repo + "/commits";
 	let req = httpGet(url, true);
 	let first_commit_hash = "";
 	if (req.getResponseHeader("Link")) {
@@ -88,32 +116,23 @@ function get_first_commit(owner, repo) {
 	return first_commit_hash;
 }
 
-// function to remove duplicates in the object retrieved from api
-const removeDuplicate = (obj) => {
-	const result = obj.filter(
-		(thing, index, self) =>
-			index ===
-			self.findIndex(
-				(t) =>
-					t.username === thing.username && t.commiterName === thing.commiterName
-			)
-	);
-	return result;
-};
+// main code
 
 // declaring GitHub account username and branch
 let owner = "BTDeveloperCommunity";
-let sha = "main";
+let branch = "main";
+let repoName = "devbt.org";
 
 // object consisting of commiter name, GitHub username, and GitHub Avatar URL for 3 repos in the organization account
-const devbtorg = removeDuplicate(get_all_commits(owner, "devbt.org", sha));
-const commGuidelines = removeDuplicate(
-	get_all_commits(owner, "btn-community-guidelines", sha)
+
+const devbtorg = get_all_commits(owner, "devbt.org", branch);
+const commGuidelines = get_all_commits(
+	owner,
+	"btn-community-guidelines",
+	branch
 );
-const profileReadme = removeDuplicate(
-	get_all_commits(owner, "BTDeveloperCommunity", sha)
-);
+const profileReadme = get_all_commits(owner, "BTDeveloperCommunity", branch);
 
 console.log(devbtorg);
-console.log(profileReadme);
 console.log(commGuidelines);
+console.log(profileReadme);

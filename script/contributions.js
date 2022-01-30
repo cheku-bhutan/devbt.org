@@ -10,7 +10,8 @@ function httpGet(theUrl, return_headers) {
 	return xmlHttp.responseText;
 }
 
-function get_all_commits_count(owner, repo, sha) {
+// function to get all commit details in the repo
+function get_all_commits(owner, repo, sha) {
 	nameList = [];
 	avatarList = [];
 	usernameList = [];
@@ -31,6 +32,7 @@ function get_all_commits_count(owner, repo, sha) {
 	let commit_req = httpGet(compare_url);
 	var jsonData = JSON.parse(commit_req);
 
+	// copying username, name, avatar to a object and setting default commit count to 1
 	for (var i in jsonData.commits) {
 		let login = "BTDeveloperCommunity";
 		let url = "https://avatars.githubusercontent.com/u/96703040?s=200&v=4";
@@ -64,6 +66,7 @@ function get_all_commits_count(owner, repo, sha) {
 	return data;
 }
 
+// function to get first commit in the repo
 function get_first_commit(owner, repo) {
 	let url = base_url + "/repos/" + owner + "/" + repo + "/commits";
 	let req = httpGet(url, true);
@@ -85,29 +88,32 @@ function get_first_commit(owner, repo) {
 	return first_commit_hash;
 }
 
+// function to remove duplicates in the object retrieved from api
+const removeDuplicate = (obj) => {
+	const result = obj.filter(
+		(thing, index, self) =>
+			index ===
+			self.findIndex(
+				(t) =>
+					t.username === thing.username && t.commiterName === thing.commiterName
+			)
+	);
+	return result;
+};
+
 // declaring GitHub account username and branch
 let owner = "BTDeveloperCommunity";
 let sha = "main";
 
 // object consisting of commiter name, GitHub username, and GitHub Avatar URL for 3 repos in the organization account
-const devbtorg = get_all_commits_count(owner, "devbt.org", sha);
-const commGuidelines = get_all_commits_count(
-	owner,
-	"btn-community-guidelines",
-	sha
+const devbtorg = removeDuplicate(get_all_commits(owner, "devbt.org", sha));
+const commGuidelines = removeDuplicate(
+	get_all_commits(owner, "btn-community-guidelines", sha)
 );
-const profileReadme = get_all_commits_count(owner, "BTDeveloperCommunity", sha);
+const profileReadme = removeDuplicate(
+	get_all_commits(owner, "BTDeveloperCommunity", sha)
+);
 
+console.log(devbtorg);
+console.log(profileReadme);
 console.log(commGuidelines);
-const arr = [];
-Object.keys(commGuidelines).forEach((key) =>
-	arr.push({
-		slNo: key,
-		commiterName: element,
-		username: usernameList[key],
-		avatar: avatarList[key],
-		commitCount: commitCount[key],
-	})
-);
-
-console.log(arr);

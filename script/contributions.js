@@ -23,6 +23,27 @@ const removeDuplicate = (obj) => {
 	return result;
 };
 
+// function to display table in html
+
+const buildTable = (data, id) => {
+	var table = document.getElementById(id);
+
+	for (let i = 0; i < data.length; i++) {
+		var row = `<tr>
+				<td>${i + 1}</td>
+				<td class="avatar" ><img src="${data[i].avatar}" alt="${
+			data[i].commiterName
+		}" /></td>
+				<td>${data[i].commiterName}</td>
+				<td><a target="_blank" href="https://github.com/${data[i].username}">${
+			data[i].username
+		}</a></td>
+				<td>${data[i].commitCount}</td>
+			</tr>`;
+		table.innerHTML += row;
+	}
+};
+
 // function to get all commit details in the repo
 function get_all_commits(owner, repo, branch) {
 	nameList = [];
@@ -136,3 +157,7 @@ const profileReadme = get_all_commits(owner, "BTDeveloperCommunity", branch);
 console.log(devbtorg);
 console.log(commGuidelines);
 console.log(profileReadme);
+
+buildTable(devbtorg, "devbt");
+buildTable(commGuidelines, "guidelines");
+buildTable(profileReadme, "readme");

@@ -24,9 +24,20 @@ const removeDuplicate = (obj) => {
 };
 
 // function to display table in html
-
 const buildTable = (data, id) => {
 	var table = document.getElementById(id);
+	var title = document.createElement("h2");
+
+	var title = `<h2>Repository - ${id}</h2>`;
+	document.body.innerHTML = document.body.innerHTML + title;
+
+	var table = `<div><table><thead><tr>
+                <th>Sl. No.</th>
+                <th>Avatar</th>
+                <th>Name</th>
+                <th>GitHub Username</th>
+                <th>Number of Commits</th>
+            </tr></thead><tbody>`;
 
 	for (let i = 0; i < data.length; i++) {
 		var row = `<tr>
@@ -40,9 +51,27 @@ const buildTable = (data, id) => {
 		}</a></td>
 				<td>${data[i].commitCount}</td>
 			</tr>`;
-		table.innerHTML += row;
+		table += row;
 	}
+	table += `</tbody></table></div>`;
+
+	document.body.innerHTML = document.body.innerHTML + table;
 };
+
+// function to get all the repos in the account
+function get_repo_list(owner) {
+	let url = `https://api.github.com/users/${owner}/repos`;
+
+	let repo = httpGet(url);
+	var repoData = JSON.parse(repo);
+	var repoList = [];
+
+	for (let i = 0; i < repoData.length; i++) {
+		repoList.push(repoData[i].name);
+	}
+
+	return repoList;
+}
 
 // function to get all commit details in the repo
 function get_all_commits(owner, repo, branch) {
@@ -142,22 +171,12 @@ function get_first_commit(owner, repo) {
 // declaring GitHub account username and branch
 let owner = "BTDeveloperCommunity";
 let branch = "main";
-let repoName = "devbt.org";
+let reposList = get_repo_list(owner);
 
-// object consisting of commiter name, GitHub username, and GitHub Avatar URL for 3 repos in the organization account
-
-const devbtorg = get_all_commits(owner, "devbt.org", branch);
-const commGuidelines = get_all_commits(
-	owner,
-	"btn-community-guidelines",
-	branch
-);
-const profileReadme = get_all_commits(owner, "BTDeveloperCommunity", branch);
-
-console.log(devbtorg);
-console.log(commGuidelines);
-console.log(profileReadme);
-
-buildTable(devbtorg, "devbt");
-buildTable(commGuidelines, "guidelines");
-buildTable(profileReadme, "readme");
+for (var i in reposList) {
+	if (reposList[i] == "dev.bt") {
+		continue;
+	}
+	const data = get_all_commits(owner, reposList[i], branch);
+	buildTable(data, reposList[i]);
+}

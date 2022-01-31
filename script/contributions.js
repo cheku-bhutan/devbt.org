@@ -33,7 +33,6 @@ const buildTable = (data, id) => {
 
 	var table = `<div><table><thead><tr>
                 <th>Sl. No.</th>
-                <th>Avatar</th>
                 <th>Name</th>
                 <th>GitHub Username</th>
                 <th>Number of Commits</th>
@@ -42,10 +41,9 @@ const buildTable = (data, id) => {
 	for (let i = 0; i < data.length; i++) {
 		var row = `<tr>
 				<td>${i + 1}</td>
-				<td class="avatar" ><img src="${data[i].avatar}" alt="${
+				<td><img src="${data[i].avatar}" alt="${data[i].commiterName}" /> ${
 			data[i].commiterName
-		}" /></td>
-				<td>${data[i].commiterName}</td>
+		}</td>
 				<td><a target="_blank" href="https://github.com/${data[i].username}">${
 			data[i].username
 		}</a></td>

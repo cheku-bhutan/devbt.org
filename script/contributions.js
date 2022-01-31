@@ -24,15 +24,15 @@ const removeDuplicate = (obj) => {
 };
 
 // function to display table in html
-const buildTable = (data, id) => {
-	var table = document.getElementById(id);
-	var title = document.createElement("h2");
+const buildTable = (data, repoName) => {
+	var div = document.querySelector(".data");
 
-	var title = `<h2>Repository - ${id}</h2>`;
-	document.body.innerHTML = document.body.innerHTML + title;
+	var title = `<h2 class="repo-title" >Repository - <a target="_blank" href="https://github.com/BTDeveloperCommunity/${repoName}">${repoName}</a></h2>`;
 
-	var table = `<div><table><thead><tr>
-                <th>Sl. No.</th>
+	div.insertAdjacentHTML("beforeend", title);
+
+	var table = `<div class="repo-table" ><table><thead><tr>
+                <th>Sl. #</th>
                 <th>Name</th>
                 <th>GitHub Username</th>
                 <th>Number of Commits</th>
@@ -41,9 +41,14 @@ const buildTable = (data, id) => {
 	for (let i = 0; i < data.length; i++) {
 		var row = `<tr>
 				<td>${i + 1}</td>
-				<td><img src="${data[i].avatar}" alt="${data[i].commiterName}" /> ${
+				<td><table class="nested-table">
+        <tr>
+            <td><img src="${data[i].avatar}" alt="${
 			data[i].commiterName
-		}</td>
+		}"/></td>
+            <td>${data[i].commiterName}</a></td>
+        </tr>
+    </table></td>
 				<td><a target="_blank" href="https://github.com/${data[i].username}">${
 			data[i].username
 		}</a></td>
@@ -53,7 +58,7 @@ const buildTable = (data, id) => {
 	}
 	table += `</tbody></table></div>`;
 
-	document.body.innerHTML = document.body.innerHTML + table;
+	div.insertAdjacentHTML("beforeend", table);
 };
 
 // function to get all the repos in the account
@@ -172,6 +177,7 @@ let branch = "main";
 let reposList = get_repo_list(owner);
 
 for (var i in reposList) {
+	// ski
 	if (reposList[i] == "dev.bt") {
 		continue;
 	}

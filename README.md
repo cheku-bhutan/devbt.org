@@ -3,7 +3,8 @@
 ### Frontend Development
 
 This is the front-end development repository of [Bhutan Developer Community's website](https://www.devbt.org).
-During discusiion carried out in our discord server we came to conclude to work on front-end on React.js
+During discusiion carried out in our discord server we came to conclude to work on front-end on React.js.
+
 On this same repository we will create a new branch front-end where all code on react.js will reside and merge to 
 main branch only when it is ready.
 

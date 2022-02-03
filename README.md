@@ -41,7 +41,7 @@ main branch only when it is ready.
  <a target="_blank" href="https://discord.gg/kfG4Z9qBEb">
   <img src="https://img.shields.io/badge/discord-7289DA?style=for-the-badge&logo=Discord&logoColor=white" alt="Bhutan Developer Community's Discord Server" />     
  </a>
- <a target="_blank" href="https://github.com/BTDeveloperCommunity">
+ <a target="_blank" href="https://github.com/btdevcommunity">
   <img src="https://img.shields.io/badge/GitHub-171515?style=for-the-badge&logo=github&logoColor=white" alt="Bhutan Developer Community's GitHub" />     
  </a>
  <a target="_blank" href="mailto:btdevelopercommunity@gmail.com">

@@ -50,6 +50,12 @@ main branch only when it is ready.
  <a target="_blank" href="https://www.devbt.org">
   <img src="https://img.shields.io/badge/Website-1EBBEE?style=for-the-badge&logo=internetexplorer&logoColor=white" alt="Bhutan Developer Community's" />     
  </a>
+  <a target="_blank" href="https://www.facebook.com/btdevcommunity">
+  <img src="https://img.shields.io/badge/Facebook-4267B2?style=for-the-badge&logo=facebook&logoColor=white" alt="Bhutan Developer Community's" />     
+ </a>
+  <a target="_blank" href="https://www.instagram.com/btdevcommunity">
+  <img src="https://img.shields.io/badge/Instagram-8a3ab9?style=for-the-badge&logo=instagram&logoColor=white" alt="Bhutan Developer Community's" />     
+ </a>
 </p>
 
 <br/>
